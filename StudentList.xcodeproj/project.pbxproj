@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8947686C24BB1E3700902C80 /* StudentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8947686B24BB1E3700902C80 /* StudentTableViewCell.swift */; };
 		8959AEBE24BA46CB001B2297 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8959AEBD24BA46CB001B2297 /* AppDelegate.swift */; };
 		8959AEC024BA46CB001B2297 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8959AEBF24BA46CB001B2297 /* SceneDelegate.swift */; };
 		8959AEC524BA46CB001B2297 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8959AEC324BA46CB001B2297 /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8947686B24BB1E3700902C80 /* StudentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentTableViewCell.swift; sourceTree = "<group>"; };
 		8959AEBA24BA46CB001B2297 /* StudentList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudentList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8959AEBD24BA46CB001B2297 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8959AEBF24BA46CB001B2297 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 				8959AEBD24BA46CB001B2297 /* AppDelegate.swift */,
 				8959AED524BA4B71001B2297 /* StudentModel.swift */,
 				8959AED124BA4791001B2297 /* StudentListViewController.swift */,
+				8947686B24BB1E3700902C80 /* StudentTableViewCell.swift */,
 				8959AEBF24BA46CB001B2297 /* SceneDelegate.swift */,
 				8959AEC324BA46CB001B2297 /* Main.storyboard */,
 				8959AEC624BA46CB001B2297 /* Assets.xcassets */,
@@ -142,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8959AEBE24BA46CB001B2297 /* AppDelegate.swift in Sources */,
+				8947686C24BB1E3700902C80 /* StudentTableViewCell.swift in Sources */,
 				8959AED624BA4B71001B2297 /* StudentModel.swift in Sources */,
 				8959AEC024BA46CB001B2297 /* SceneDelegate.swift in Sources */,
 				8959AED224BA4791001B2297 /* StudentListViewController.swift in Sources */,
