@@ -7,22 +7,26 @@
 //
 
 import Foundation
-import UIKit
+
 
 struct Student {
     let firstName : String
     let lastName : String
     let rating : Int
-    let gender : String
     let profilUrl: URL?
+    let gender: GenderSortType
     
-    init(firstName: String, lastName: String, rating: Int, gender: String,  profilUrl: URL?) {
+    enum GenderSortType: String {
+        case male = "Male"
+        case famale = "Famale"
+    }
+    
+    init(firstName: String, lastName: String, rating: Int, gender: GenderSortType,   profilUrl: URL?) {
         self.firstName = firstName
         self.lastName = lastName
         self.rating = rating
         self.gender = gender
         self.profilUrl = profilUrl
     }
-
-
 }
+

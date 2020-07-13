@@ -19,7 +19,7 @@ class StudentTableViewCell: UITableViewCell {
     func setStudent (student: Student) {
         firstNameLabel.text = student.firstName
         lastNameLabel.text = student.lastName
-        genderLabel.text = student.gender
+        genderLabel.text = student.gender.rawValue
         ratingLabel.text = "#\(student.rating)"
         
     }
