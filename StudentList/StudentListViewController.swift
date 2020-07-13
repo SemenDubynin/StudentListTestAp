@@ -10,11 +10,11 @@ import UIKit
 
 
 class StudentListViewController: UITableViewController {
-    
+
     private let idCell = "Cell"
     private var studentsArray: [Student] = []
-    
     private var searchFiltrArray: [Student] = []
+    
     private let searchController = UISearchController(searchResultsController: nil)
     private var searchBarIsEmpty: Bool {
         guard let text = searchController.searchBar.text else { return false }
@@ -121,7 +121,7 @@ extension StudentListViewController: UISearchResultsUpdating {
             if searchBarIsEmpty {
                 return doesCategoryMatch
             }
-            return doesCategoryMatch && filterStudent.firstName.lowercased().contains(searchText.lowercased())
+            return doesCategoryMatch && (filterStudent.firstName.lowercased().contains(searchText.lowercased()) || filterStudent.lastName.lowercased().contains(searchText.lowercased())) 
         })  
         tableView.reloadData()
     }
