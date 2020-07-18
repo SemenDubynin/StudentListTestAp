@@ -55,9 +55,7 @@ class StudentListViewController: UITableViewController {
                 } else {
                     selectedStudURL = studentsArray[indexPath.row].profilUrl
                 }
-                //            let indexPath: IndexPath = self.tableView.indexPathForSelectedRow!
-                //            let selectedStudURL = studentsArray[indexPath.row].profilUrl!
-                //
+                
                 let detailVC: DetailViewController = segue.destination as! DetailViewController
                 detailVC.selectedStudentUrl = selectedStudURL
             }
