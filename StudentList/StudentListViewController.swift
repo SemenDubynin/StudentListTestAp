@@ -81,7 +81,7 @@ class StudentListViewController: UITableViewController {
         let studentSeven = Student(firstName: "Elena", lastName: "Mitrofanova", rating: 52, gender: .famale, profilUrl: nil)
         let studentEight = Student(firstName: "Vasily", lastName: "Teplov", rating: 92, gender: .male, profilUrl: nil)
         let studentNine = Student(firstName: "Ivan", lastName: "Ivanov", rating: 99, gender: .male, profilUrl: nil)
-        let studentTen = Student(firstName: "Anna", lastName: "Petrova", rating: 12, gender: .famale, profilUrl: nil)
+        let studentTen = Student(firstName: "Anna", lastName: "Petrova", rating: 12, gender: .famale, profilUrl: "jjj")
         
         studentList.append(studentOne)
         studentList.append(studentTwo)
@@ -132,15 +132,14 @@ class StudentListViewController: UITableViewController {
             validateSrudentURL = studentsArray[indexPath.row].profilUrl
         }
         
-        if validateSrudentURL  == nil {
+        if (validateSrudentURL != nil) && (validateSrudentURL?.canOpenUrl() == true) {
+            performSegue(withIdentifier: "ShowDetail", sender: self)
+        } else {
             let alert = UIAlertController(title: "Failed", message: "Enter a valid URL", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
-            
             self.present(alert, animated: true, completion: nil)
-        } else {
-            performSegue(withIdentifier: "ShowDetail", sender: self)
-            
         }
+        
         return
     }
 }
@@ -178,4 +177,11 @@ extension StudentListViewController: UISearchBarDelegate {
     }
 }
 
-
+extension String {
+    func canOpenUrl() -> Bool {
+        guard let url = URL(string: self), UIApplication.shared.canOpenURL(url) else { return false }
+        let regEx = "((https|http)://)((\\w|-)+)(([.]|[/])((\\w|-)+))+"
+        let predicate = NSPredicate(format:"SELF MATCHES %@", argumentArray:[regEx])
+        return predicate.evaluate(with: self)
+    }
+}

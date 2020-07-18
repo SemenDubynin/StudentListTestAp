@@ -22,7 +22,8 @@ class DetailViewController: UIViewController, WKUIDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadView() 
+        loadView()
+        
         
         let myURL = URL(string: selectedStudentUrl! )
         let myRequest = URLRequest(url: myURL!)
