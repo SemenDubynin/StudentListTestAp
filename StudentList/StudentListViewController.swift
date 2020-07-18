@@ -10,10 +10,12 @@ import UIKit
 
 
 class StudentListViewController: UITableViewController {
-
+    
     private let idCell = "Cell"
     private var studentsArray: [Student] = []
     private var searchFiltrArray: [Student] = []
+    
+    
     
     private let searchController = UISearchController(searchResultsController: nil)
     private var searchBarIsEmpty: Bool {
@@ -27,6 +29,8 @@ class StudentListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
         
         // Setup the Search Controller
         studentsArray = createStudentsArray()
@@ -41,16 +45,39 @@ class StudentListViewController: UITableViewController {
         searchController.searchBar.delegate = self
         
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "ShowDetail" {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let selectedStudURL: String?
+                if isFiltering {
+                    selectedStudURL = searchFiltrArray[indexPath.row].profilUrl
+                } else {
+                    selectedStudURL = studentsArray[indexPath.row].profilUrl
+                }
+                //            let indexPath: IndexPath = self.tableView.indexPathForSelectedRow!
+                //            let selectedStudURL = studentsArray[indexPath.row].profilUrl!
+                //
+                let detailVC: DetailViewController = segue.destination as! DetailViewController
+                detailVC.selectedStudentUrl = selectedStudURL
+            }
+        }
+        return
+    }
+    
+    
+    
+    
     //MARK: - Create Student Array
     
     
     func createStudentsArray() -> [Student] {
         
         var studentList: [Student] = []
-        let studentOne = Student(firstName: "Semen", lastName: "Dubynin", rating: 95, gender: .male, profilUrl: nil)
+        let studentOne = Student(firstName: "Semen", lastName: "Dubynin", rating: 95, gender: .male, profilUrl: "https://www.google.ru")
         let studentTwo = Student(firstName: "Roman", lastName: "Chuev", rating: 84, gender: .male, profilUrl: nil)
         let studentThree = Student(firstName: "Ekaterina", lastName: "Dubynina", rating: 21, gender: .famale, profilUrl: nil)
-        let studentFour = Student(firstName: "Zlata", lastName: "Dubynina", rating: 30, gender: .famale, profilUrl: nil)
+        let studentFour = Student(firstName: "Zlata", lastName: "Dubynina", rating: 30, gender: .famale, profilUrl: "https://yandex.ru")
         let studentFive = Student(firstName: "Ruslan", lastName: "Zainullin", rating: 32, gender: .male, profilUrl: nil)
         let studentSix = Student(firstName: "Dmitry", lastName: "Hodgekulov", rating: 22, gender: .male, profilUrl: nil)
         let studentSeven = Student(firstName: "Elena", lastName: "Mitrofanova", rating: 52, gender: .famale, profilUrl: nil)
@@ -75,7 +102,6 @@ class StudentListViewController: UITableViewController {
     }
     
     
-    
     // MARK: - Table view data source
     
     
@@ -89,7 +115,7 @@ class StudentListViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var studentCell: Student
+        var studentCell: Student!
         if isFiltering {
             studentCell = searchFiltrArray[indexPath.row]
         } else {
@@ -100,7 +126,25 @@ class StudentListViewController: UITableViewController {
         
         return cell
     }
-    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let validateSrudentURL: String?
+        if isFiltering {
+            validateSrudentURL = searchFiltrArray[indexPath.row].profilUrl
+        } else {
+            validateSrudentURL = studentsArray[indexPath.row].profilUrl
+        }
+        
+        if validateSrudentURL  == nil {
+            let alert = UIAlertController(title: "Failed", message: "Enter a valid URL", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+            
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            performSegue(withIdentifier: "ShowDetail", sender: self)
+            
+        }
+        return
+    }
 }
 
     // MARK: - UISearchBarResultsUpdating
@@ -127,7 +171,7 @@ extension StudentListViewController: UISearchResultsUpdating {
     }
     
 }
-
+    
     // MARK: - UiSearchBar Delegate
 
 extension StudentListViewController: UISearchBarDelegate {
@@ -135,4 +179,5 @@ extension StudentListViewController: UISearchBarDelegate {
         filterContentForSearchText(searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
     }
 }
+
 

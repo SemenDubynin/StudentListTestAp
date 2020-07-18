@@ -13,7 +13,7 @@ struct Student {
     let firstName : String
     let lastName : String
     let rating : Int
-    let profilUrl: URL?
+    let profilUrl: String?
     let gender: GenderSortType
     
     enum GenderSortType: String {
@@ -21,7 +21,7 @@ struct Student {
         case famale = "Famale"
     }
     
-    init(firstName: String, lastName: String, rating: Int, gender: GenderSortType,   profilUrl: URL?) {
+    init(firstName: String, lastName: String, rating: Int, gender: GenderSortType,   profilUrl: String?) {
         self.firstName = firstName
         self.lastName = lastName
         self.rating = rating
